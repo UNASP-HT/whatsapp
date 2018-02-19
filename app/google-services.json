@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "176768041136",
+    "firebase_url": "https://unasp-noticias.firebaseio.com",
+    "project_id": "unasp-noticias",
+    "storage_bucket": "unasp-noticias.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:176768041136:android:73c7fea4598ce609",
+        "android_client_info": {
+          "package_name": "com.example.marcos.unaspht_whatsapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "176768041136-dr3tmoro8r5nm9rd2hkpbceav0kibec4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.marcos.unaspht_whatsapp",
+            "certificate_hash": "abbcf4469996a9a30e5aa9addbfd369d9484d539"
+          }
+        },
+        {
+          "client_id": "176768041136-n4h3p7vc7oi6h6me5la8a3sb20jcpkar.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBJ34PUC00Z70Z7Dg8ARTqhSgiUIKJMddM"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "176768041136-n4h3p7vc7oi6h6me5la8a3sb20jcpkar.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
