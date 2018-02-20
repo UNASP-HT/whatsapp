@@ -84,7 +84,7 @@ public class LoginActivity_SMS extends AppCompatActivity {
                     preferencias.salvarUsuariosPreferencias(telefoneCompleto, token);
 
                     //Envio de SMS
-                    telefoneCompleto = "8135";
+//                    telefoneCompleto = "8135";
                     boolean enviadoSMS = enviaSMS(telefoneCompleto, mensagemEnvio);
 
                     if ( enviadoSMS) {

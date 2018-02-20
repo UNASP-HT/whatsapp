@@ -11,22 +11,21 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".acitivity.LoginActivity">
+        android:theme="@style/AppTheme.NoActionBar">
+        <activity android:name=".acitivity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".acitivity.MainActivity" />
+        <activity android:name=".acitivity.LoginActivity" />
         <activity android:name=".acitivity.AvalidadorActivity_SMS" />
         <activity android:name=".acitivity.LoginActivity_SMS" />
         <activity
             android:name=".acitivity.CadastroUsuarioActivity"
             android:label="@string/title_activity_cadastro_usuario"
-            android:parentActivityName=".acitivity.MainActivity"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:parentActivityName=".acitivity.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.marcos.unaspht_whatsapp.acitivity.MainActivity" />
