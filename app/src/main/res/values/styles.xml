@@ -15,7 +15,7 @@
         <!--TROCAR A COR DOS ITENS E O BACKGROUND -->
 
        <!-- <item name="android:itemBackground">@android:color/white</item> -->
-        <item name="android:textColor">@android:color/white</item>
+        <!--<item name="android:textColor">@android:color/white</item>-->
 
     </style>
 

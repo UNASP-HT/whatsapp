@@ -45,7 +45,8 @@ public class MainActivity extends AppCompatActivity {
 
         //Configurar a tablayout para preencher a página e trocar a cor do indicativo da página
         slidingTabLayout.setDistributeEvenly(true);
-        slidingTabLayout.setSelectedIndicatorColors(ContextCompat.getColor(this, R.color.slidingColor));
+        slidingTabLayout.setSelectedIndicatorColors(ContextCompat.getColor(this, R.color.colorPrimary));
+        slidingTabLayout.setBackgroundColor(0x00000000);
 
         //Configurar Adapter. O Adapter será usado pela viewPager
         TabAdapter tabAdapter = new TabAdapter(getSupportFragmentManager());
