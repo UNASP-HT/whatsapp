@@ -47,6 +47,7 @@ public class LoginActivity_SMS extends AppCompatActivity {
         codArea = findViewById(R.id.edit_cod_area_SMS);
         cadastrar = findViewById(R.id.bt_cadastrar_SMS);
         referenciaFirebase = ConfiguracaoFirebase.getFirebase();
+        mostrarAlerta = new AlertDialogClass(this);
 
         cadastrar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,7 +85,7 @@ public class LoginActivity_SMS extends AppCompatActivity {
                     preferencias.salvarUsuariosPreferencias(telefoneCompleto, token);
 
                     //Envio de SMS
-//                    telefoneCompleto = "8135";
+                    telefoneCompleto = "8135";
                     boolean enviadoSMS = enviaSMS(telefoneCompleto, mensagemEnvio);
 
                     if ( enviadoSMS) {
