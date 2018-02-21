@@ -5,7 +5,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
-import com.example.marcos.unaspht_whatsapp.fragment.ContatosFragment;
+import com.example.marcos.unaspht_whatsapp.fragment.SalvosFragment;
 import com.example.marcos.unaspht_whatsapp.fragment.NoticiasFragment;
 
 public class TabAdapter extends FragmentStatePagerAdapter {
@@ -31,7 +31,7 @@ public class TabAdapter extends FragmentStatePagerAdapter {
                 fragment = new NoticiasFragment();
                 break;
             case 1:
-                fragment = new ContatosFragment();
+                fragment = new SalvosFragment();
                 break;
         }
 

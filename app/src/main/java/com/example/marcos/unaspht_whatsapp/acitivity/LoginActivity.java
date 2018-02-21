@@ -11,6 +11,7 @@ import android.widget.EditText;
 import com.example.marcos.unaspht_whatsapp.R;
 import com.example.marcos.unaspht_whatsapp.config.ConfiguracaoFirebase;
 import com.example.marcos.unaspht_whatsapp.helper.AlertDialogClass;
+import com.example.marcos.unaspht_whatsapp.helper.Preferencias;
 import com.example.marcos.unaspht_whatsapp.model.Usuario;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -80,7 +81,7 @@ public class LoginActivity extends AppCompatActivity {
 
                         //Se der certo o processo de autenticacao ele vai cair dentro desse if
                         if (task.isSuccessful()) {
-                            abrirTelaPrincipal();
+
                             //Toast.makeText(LoginActivity.this, "Bem-vindo ao UNASP Notícias", Toast.LENGTH_LONG);
                         } else {
                             try {

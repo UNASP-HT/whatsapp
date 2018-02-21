@@ -19,9 +19,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".acitivity.LoginActivity_SMS" />
-        <activity android:name=".acitivity.AvalidadorActivity_SMS" />
         <activity android:name=".acitivity.LoginActivity" />
+        <activity android:name=".acitivity.AvalidadorActivity_SMS" />
+        <activity android:name=".acitivity.LoginActivity_SMS" />
         <activity
             android:name=".acitivity.CadastroUsuarioActivity"
             android:label="@string/title_activity_cadastro_usuario"
@@ -30,6 +30,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.marcos.unaspht_whatsapp.acitivity.MainActivity" />
         </activity>
+        <activity android:name=".acitivity.NoticiasActivity"></activity>
     </application>
 
 </manifest>

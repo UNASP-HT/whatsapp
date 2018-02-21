@@ -12,10 +12,10 @@ import com.example.marcos.unaspht_whatsapp.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ContatosFragment extends Fragment {
+public class SalvosFragment extends Fragment {
 
 
-    public ContatosFragment() {
+    public SalvosFragment() {
         // Required empty public constructor
     }
 
