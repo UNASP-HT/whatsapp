@@ -1,38 +1,39 @@
 package com.example.marcos.unaspht_whatsapp.acitivity;
 
+import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 
 import com.example.marcos.unaspht_whatsapp.Adapter.TabAdapter;
 import com.example.marcos.unaspht_whatsapp.R;
 import com.example.marcos.unaspht_whatsapp.config.ConfiguracaoFirebase;
 import com.example.marcos.unaspht_whatsapp.helper.AlertDialogClass;
+import com.example.marcos.unaspht_whatsapp.helper.Preferencias;
 import com.example.marcos.unaspht_whatsapp.helper.SlidingTabLayout;
+import com.example.marcos.unaspht_whatsapp.model.Noticia;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
 
 public class MainActivity extends AppCompatActivity {
+
 
     private Toolbar toolbar;
     private FirebaseAuth usuarioAutenticacao;
     private SlidingTabLayout slidingTabLayout;
     private ViewPager viewPager;
     private AlertDialogClass msgerro;
+    private String idUsuarioRemetente;
+    private DatabaseReference firebase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +50,10 @@ public class MainActivity extends AppCompatActivity {
         viewPager = findViewById(R.id.vp_pagina);
         msgerro = new AlertDialogClass(this);
 
+        //Dados do usuario
+        Preferencias preferencias = new Preferencias(MainActivity.this);
+        idUsuarioRemetente = preferencias.getIdentificador();
+
         //Configurar a tablayout para preencher a página e trocar a cor do indicativo da página
         slidingTabLayout.setDistributeEvenly(true);
         slidingTabLayout.setSelectedIndicatorColors(ContextCompat.getColor(this, R.color.colorPrimary));
@@ -59,12 +64,11 @@ public class MainActivity extends AppCompatActivity {
         viewPager.setAdapter(tabAdapter);
 
         slidingTabLayout.setViewPager(viewPager);
-
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        //getMenuInglater cria um objeto do menu inflater com cotexto do menu aplicação
+        //getMenuInflater cria um objeto do menu inflater com cotexto do menu aplicação
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_main, menu);
         return true;
@@ -111,9 +115,16 @@ public class MainActivity extends AppCompatActivity {
                 String postdaNoticia = editText.getText().toString();
 
                 if (postdaNoticia.isEmpty()){
+
                     msgerro.showText("", "Por favor colocar mais conteúdo antes de postar");
+
                 } else {
 
+                    Noticia postarNoticia = new Noticia();
+                    postarNoticia.setId(idUsuarioRemetente);
+                    postarNoticia.setNoticia(postdaNoticia);
+
+                    salvarMensagem(idUsuarioRemetente, postarNoticia);
                 }
 
             }
@@ -129,9 +140,25 @@ public class MainActivity extends AppCompatActivity {
         alertDialog.create();
         alertDialog.show();
 
+
+    }
+
+    private boolean salvarMensagem(String idRemetente, Noticia noticia){
+
+        try{
+
+            firebase = ConfiguracaoFirebase.getFirebase().child("noticia");
+            firebase.child(idRemetente);
+
+            return true;
+        }catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
     }
 
     private void deslogarUsuario() {
+
         usuarioAutenticacao.signOut();
         Intent intent = new Intent(MainActivity.this, LoginActivity.class);
         startActivity(intent);

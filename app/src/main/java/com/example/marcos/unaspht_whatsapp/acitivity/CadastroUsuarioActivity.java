@@ -1,8 +1,10 @@
 package com.example.marcos.unaspht_whatsapp.acitivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Base64;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -11,6 +13,8 @@ import android.widget.Toast;
 import com.example.marcos.unaspht_whatsapp.R;
 import com.example.marcos.unaspht_whatsapp.config.ConfiguracaoFirebase;
 import com.example.marcos.unaspht_whatsapp.helper.AlertDialogClass;
+import com.example.marcos.unaspht_whatsapp.helper.Base64Custom;
+import com.example.marcos.unaspht_whatsapp.helper.Preferencias;
 import com.example.marcos.unaspht_whatsapp.model.Usuario;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -19,7 +23,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
-import com.google.firebase.auth.FirebaseUser;
 
 public class CadastroUsuarioActivity extends AppCompatActivity {
 
@@ -84,14 +87,19 @@ public class CadastroUsuarioActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             Toast.makeText(CadastroUsuarioActivity.this, "Sucesso ao cadastrar usuário", Toast.LENGTH_LONG).show();
 
-                            //recuperar o resultado da criação do usuário
-                            FirebaseUser usuarioFirebase = task.getResult().getUser();
-                            usuario.setId(usuarioFirebase.getUid());
+                            String identificadorUsuario = Base64Custom.codificarBase64(usuario.getEmail());
+                            usuario.setId(identificadorUsuario);
                             usuario.salvar();
 
-                            //para fechar a atividade e logar novamente
-                            autenticacao.signOut();
-                            finish();
+                            //Salva os dados do usuario logado diretamente no próprio dispositivo
+                            Preferencias preferencias = new Preferencias(CadastroUsuarioActivity.this);
+                            preferencias.salvarDados((identificadorUsuario));
+
+                            abrirLoginUsuario();
+
+//                            //para fechar a atividade e logar novamente
+//                            autenticacao.signOut();
+//                            finish();
 
                         } else {
 
@@ -114,6 +122,11 @@ public class CadastroUsuarioActivity extends AppCompatActivity {
         catch (Exception e){
             mostrarErro.showText("Erro de conexão", "Verifique a sua conexão com a internet");
         }
+    }
+
+    public void abrirLoginUsuario(){
+        Intent intent = new Intent(CadastroUsuarioActivity.this, LoginActivity.class);
+        startActivity(intent);
     }
 
 }

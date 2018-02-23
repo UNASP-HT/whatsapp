@@ -4,9 +4,6 @@ import com.example.marcos.unaspht_whatsapp.config.ConfiguracaoFirebase;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.Exclude;
 
-/**
- * Created by Italo on 18/02/2018.
- */
 
 public class Usuario {
 

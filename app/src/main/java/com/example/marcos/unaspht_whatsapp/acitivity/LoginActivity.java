@@ -11,6 +11,7 @@ import android.widget.EditText;
 import com.example.marcos.unaspht_whatsapp.R;
 import com.example.marcos.unaspht_whatsapp.config.ConfiguracaoFirebase;
 import com.example.marcos.unaspht_whatsapp.helper.AlertDialogClass;
+import com.example.marcos.unaspht_whatsapp.helper.Base64Custom;
 import com.example.marcos.unaspht_whatsapp.helper.Preferencias;
 import com.example.marcos.unaspht_whatsapp.model.Usuario;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -34,7 +35,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        veridicarUsuarioLogado();
+        veriFicarUsuarioLogado();
 
         email = findViewById(R.id.edit_login_email);
         senha = findViewById(R.id.edit_login_senha);
@@ -54,7 +55,7 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-    private void veridicarUsuarioLogado(){
+    private void veriFicarUsuarioLogado(){
 
         /*caso o usuário esteja logado, ao utilizar o metodo getCurrentUser() nós vamos recuperar um objeto: o usuário que está
         logado no sistema.
@@ -82,6 +83,12 @@ public class LoginActivity extends AppCompatActivity {
                         //Se der certo o processo de autenticacao ele vai cair dentro desse if
                         if (task.isSuccessful()) {
 
+                            //Salva os dados do usuario logado diretamente no próprio dispositivo
+                            Preferencias preferencias = new Preferencias(LoginActivity.this);
+                            String identificadorUsuarioLogado = Base64Custom.codificarBase64(usuario.getEmail());
+                            preferencias.salvarDados((identificadorUsuarioLogado));
+
+                            abrirTelaPrincipal();
                             //Toast.makeText(LoginActivity.this, "Bem-vindo ao UNASP Notícias", Toast.LENGTH_LONG);
                         } else {
                             try {
